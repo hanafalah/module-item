@@ -6,28 +6,41 @@ use Hanafalah\ModuleItem\{
 };
 
 return [
-    'contracts' => [
-        'card_stock'    => Contracts\CardStock::class,
-        'composition'   => Contracts\Composition::class,
-        'item'          => Contracts\Item::class,
-        'item_stock'    => Contracts\ItemStock::class,
-        'item_stuff'    => Contracts\ItemStuff::class
+    'namespace' => 'Hanafalah\ModuleItem',
+    'app' => [
+        'contracts' => [
+            //ADD YOUR CONTRACTS HERE
+        ]
+    ],
+    'libs'       => [
+        'model' => 'Models',
+        'contract' => 'Contracts',
+        'schema' => 'Schemas',
+        'database' => 'Database',
+        'data' => 'Data',
+        'resource' => 'Resources',
+        'migration' => '../assets/database/migrations'
     ],
     'database'  => [
         'models' => [
-            'Item'                => ModuleItem\Item::class,
-            'ItemStuff'           => ModuleItem\ItemStuff::class,
-            'BillOfMaterial'      => ModuleItem\BillOfMaterial::class,
-            'Material'            => ModuleItem\Material::class,
-            'ItemStock'           => ModuleItem\ItemStock::class,
-            'CardStock'           => ModuleItem\CardStock::class,
-            'Composition'         => ModuleItem\Composition::class,
-            'ModelHasComposition' => ModuleItem\ModelHasComposition::class
         ]
     ],
     'warehouse' => null, //please enter your warehouse model
     'update_price_from_procurement' => [
         'enable' => true,
         'method' => 'AVERAGE'
+    ],
+    'item_reference_types' => [
+        'material' => [
+            'schema' => 'Material'
+        ]
+    ],
+    'inventory_types' => [
+        'office_supply' => [
+            'schema' => 'OfficeSupply'
+        ],
+        'stuff_supply' => [
+            'schema' => 'StuffSupply'
+        ]
     ]
 ];

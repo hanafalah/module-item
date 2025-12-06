@@ -14,7 +14,7 @@ class ShowCardStock extends ViewCardStock
     {
         $arr = [
             'stock_movement'  => $this->relationValidation('stockMovement', function () {
-                return $this->stockMovement->toShowApi();
+                return $this->stockMovement->toShowApi()->resolve();
             }),
             'stock_movements' => $this->relationValidation('stockMovements', function () {
                 $stock_movements = $this->stockMovements;
@@ -23,18 +23,17 @@ class ShowCardStock extends ViewCardStock
                 });
             }),
             'item' => $this->relationValidation('item', function () {
-                return $this->item->toViewApi();
-            }),
+                return $this->item->toShowApi()->resolve();
+            },$this->prop_item),
             'goods_receipt_unit' => $this->relationValidation('goodsReceiptUnit', function () {
-                return $this->goodsReceiptUnit->toShowApi();
+                return $this->goodsReceiptUnit->toShowApi()->resolve();
             }),
             'transaction' => $this->relationValidation('transaction', function () {
-                return $this->transaction->toShowApi();
-            })
+                return $this->transaction->toShowApi()->resolve();
+            },$this->prop_transaction)
         ];
 
         $arr = $this->mergeArray(parent::toArray($request), $arr);
-
         return $arr;
     }
 }

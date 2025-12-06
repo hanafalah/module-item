@@ -6,14 +6,12 @@ use Hanafalah\LaravelSupport\Models\BaseModel;
 
 class ModelHasManufacture extends BaseModel
 {
+    public $incrementing = false;
+
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
     protected $list  = ['id', 'model_type', 'model_id', 'manufacture_id'];
 
-    public function manufacture()
-    {
-        return $this->belongsToModel('Manufacture');
-    }
-    public function model()
-    {
-        return $this->morphTo();
-    }
+    public function manufacture(){return $this->belongsToModel('Manufacture');}
+    public function model(){return $this->morphTo();}
 }

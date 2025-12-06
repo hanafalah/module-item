@@ -3,30 +3,20 @@
     "description": "module for item in klinik or puskesmas",
     "type": "library",
     "require": {
-        "hanafalah/laravel-support": "dev-production",
-        "hanafalah/module-warehouse": "dev-production",
-        "hanafalah/module-transaction": "dev-production",
-        "hanafalah/module-distribution": "dev-production"
+        "hanafalah/laravel-support": "dev-main",
+        "hanafalah/module-service": "dev-main",
+        "hanafalah/module-warehouse": "dev-main"
     },
     "autoload": {
         "psr-4": {
             "Hanafalah\\ModuleItem\\": "src/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Hanafalah\\ModuleItem\\ModuleItemServiceProvider"
-            ]
-        }
-    },
     "authors": [
         {
-            "name": "Alghi",
-            "email": "alghi@mvi.co.id"
+            "name": "hamzah nur al falah",
+            "email": "hamzahnafalah@gmail.com"
         }
     ],
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": false
+    "license": "MIT"
 }

@@ -2,30 +2,21 @@
 
 namespace Hanafalah\ModuleItem\Models;
 
-use Hanafalah\ModuleItem\Resources\ItemStuff\ViewItemStuff;
-use Hanafalah\LaravelHasProps\Concerns\HasProps;
-use Hanafalah\LaravelSupport\Models\BaseModel;
+use Hanafalah\ModuleItem\Resources\ItemStuff\{ShowItemStuff, ViewItemStuff};
+use Hanafalah\LaravelSupport\Models\Unicode\Unicode;
 
-class ItemStuff extends BaseModel
+class ItemStuff extends Unicode
 {
-    use HasProps;
+    protected $table = 'unicodes';
 
-    public $timestamps = false;
-    protected $list = ['id', 'parent_id', 'name', 'flag', 'props'];
-
-    public function toViewApi()
+    protected static function booted(): void
     {
-        return new ViewItemStuff($this);
+        parent::booted();
+        static::creating(function ($query) {
+            $query->general_flag = 'ItemStuff';
+        });
     }
 
-    public function toShowApi()
-    {
-        return new ViewItemStuff($this);
-    }
-
-    //OVERIDING DEFAULT CHILDS EIGER
-    public function childs()
-    {
-        return $this->hasMany(get_class($this), static::getParentId())->with('childs');
-    }
+    public function getViewResource(){return ViewItemStuff::class;}
+    public function getShowResource(){return ShowItemStuff::class;}
 }
